@@ -91,7 +91,7 @@ def match_chat(match_summary=None, agent=None, user_question=None, memory=None):
     - Blend data into sentences, don’t list them.
     - If it's a goal, describe it a bit (how, who, what kind of chance — use xG loosely).
     - Say "the xG was around 0.6" instead of quoting exact numbers.
-    - Explain the xG simply, like “it was a big chance” or “xG around 0.6”.
+    - Explain the xG simply, like “it was a big chance” or “xG around ...”.
     - If it’s a card, talk about the timing, the player’s reputation, or possible tension.
     - If it’s a sub, foul, injury — explain it like a fan would.
     - Keep it tight — no filler like “hope you enjoyed it” or “just another thrilling moment”.
