@@ -88,37 +88,19 @@ You can view the architecture below.
 
 ```mermaid
 flowchart TD
-    A[User] --> B[Streamlit UI<br/>(app.py)]
-
-    B --> C1[Selects Competition/Season/Match]
-    C1 --> D1[get_data.py<br/>getCompet, getSeasons, getMatches]
-
-    B --> C2[Views Lineups and Info]
-    C2 --> D2[getTeams, getLineups, getMatchinfo]
-
-    B --> C3[Score Display]
-    C3 --> D3[score.py<br/>count_goals + display_score]
-
-    B --> C4[Chat Input<br/>User Question]
-    C4 --> E1[match_chat() in match_agent.py]
-
+    A[User] --> B[Streamlit UI app.py]
+    B --> C1[Select Match] --> D1[get_data.py]
+    C1 --> C2[score.py] --> D2[Score Display]
+    D2 --> B
+    B --> C3[Chat] --> E1[match_chat]
     subgraph LangChain Engine
-        E1 --> F1[Data Agent<br/>create_pandas_dataframe_agent]
-        E1 --> F2[Conversation Memory<br/>ConversationSummaryBufferMemory]
-        F1 --> G1[Query Event Data<br/>DataFrame from getEvents()]
-        G1 --> H1[Return factual answer]
-        H1 --> I1[Rephrase with LLM<br/>ChatOpenAI (creative_llm)]
+        E1 --> F1[Pandas Agent]
+        E1 --> F2[Memory + Summary]
+        F1 --> G1[Event DataFrame]
+        D1 --> G1
+        G1 --> H1[Raw Answer] --> I1[Creative LLM]
     end
-
-    I1 --> J1[Return Final Response]
-    J1 --> B
-
-    style A fill:#fdf6e3,stroke:#657b83
-    style B fill:#fdf6e3,stroke:#657b83
-    style D1 fill:#eee8d5,stroke:#657b83
-    style D2 fill:#eee8d5,stroke:#657b83
-    style D3 fill:#eee8d5,stroke:#657b83
-    style G1 fill:#eee8d5,stroke:#657b83
+    I1 --> J1[Final Response] --> B
 ```
 
 ## ✍️ Example Chat
@@ -128,24 +110,6 @@ flowchart TD
 
 > **User:** How did the xG look?  
 > **Chatbot:** Decent chances overall. The winner came from an xG around 0.6 — definitely a high-probability strike.
-
-
-## 📈 Architecture
-
-```mermaid
-flowchart TD
-    A[User] --> B[Streamlit UI<br/>(app.py)]
-    B --> C1[Select Match] --> D1[get_data.py]
-    B --> C2[Score Display] --> D2[score.py]
-    B --> C3[Chat] --> E1[match_chat()]
-    subgraph LangChain Engine
-        E1 --> F1[Pandas Agent]
-        E1 --> F2[Memory + Summary]
-        F1 --> G1[Event DataFrame]
-        G1 --> H1[Raw Answer] --> I1[Creative LLM]
-    end
-    I1 --> J1[Final Response] --> B
-```
 
 ## 🤖 Technologies Used
 
