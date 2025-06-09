@@ -90,7 +90,6 @@ def match_chat(match_summary=None, agent=None, user_question=None, memory=None):
     - Explains context in plain terms — like when the card happened, what it meant, or who made the play.
     - Blend data into sentences, don’t list them.
     - If it's a goal, describe it a bit (how, who, what kind of chance — use xG loosely).
-    - Say "the xG was around 0.6" instead of quoting exact numbers.
     - Explain the xG simply, like “it was a big chance” or “xG around ...”.
     - If it’s a card, talk about the timing, the player’s reputation, or possible tension.
     - If it’s a sub, foul, injury — explain it like a fan would.
